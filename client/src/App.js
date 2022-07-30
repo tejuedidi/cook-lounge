@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+// import './App.css';
 
 function App() {
+  // var that holds and contains the data that we recieve from backend API
+  const [clientData, setclientData] = React.useState(null);
+  //fetch backend API
+  React.useEffect(() => {
+    // adding in route as this is were we will fetch the data from
+    fetch("/api")
+      .then(response => response.json())
+      .then(data => {
+        // set fetched data to BackendData var
+        setclientData(data.message);
+      }
+      ) // got json response
+  }, []) //pass empty array so it runs on first render
+
+  // displaying backend data on front end
   return (
-    <div className="App">
+    <div className='App'>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{!clientData ? "Loading..." : clientData}</p>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;
