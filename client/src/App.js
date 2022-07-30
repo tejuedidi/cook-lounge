@@ -1,5 +1,5 @@
 import React from 'react'
-// import './App.css';
+import './Nav.css';
 
 function App() {
   // var that holds and contains the data that we recieve from backend API
